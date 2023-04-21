@@ -51,11 +51,12 @@ class categoria_model {
         try {
             $consulta = "DELETE FROM categoria WHERE id = :id";
             $stmt =$this->conexion->prepare($consulta);
-            //$stmt->bindParam(':id', $_GET['id'], PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
             //
             //$result = $stmt->execute();
-            if($stmt)
-            return true;
+//
+//            $stmt->execute(['id' =>$id]);
         } catch (PDOException $e) {
             echo "ERROR: " . $e->getMessage();
         }

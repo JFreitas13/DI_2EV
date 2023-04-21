@@ -53,4 +53,30 @@
 </body>
 </html>
 -->
+<?php
+//require_once('../db/connect_db.php');
+//require_once ('../model/categoria_model.php');
+//require_once ('../controller/categoria_controller.php');
+//
+//$conexion = new Conexion(); //instanciamos la BBDD
+//$modelo_categoria = new categoria_model($conexion->conectar()); //instanciamos la clase usuario_modelo y le pasamos el parametro de la conexion
+//$controlador_categoria = new categoria_controller($modelo_categoria); //instanciamos el controlador del usuario al que pasamos como parametros el modelo_usuario que acabamos de instanciar
+//
+//if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la solicitud de POST
+//    //obtenemos los datos
+//    $id = $_POST["id"];
+//    //llamamos al metodo registrar del usuario_controller y pasamos los datos obtenidos
+//    $controlador_categoria->eliminar($id);
+//    header("Location: ../index_listar_categorias.php"); //redirecciono a la home porque me falla al redireccionar al index de listado. TODO : ver como hacerlo
+//}
+?>
+
+<h1>Delete product</h1>
+
+<p>Are you sure you want to delete product?</p>
+<p>¿Estás seguro de que quieres eliminar este usuario?</p>
+<form action="/controller/usuario_controller.php?action=eliminar?id=" method="post">
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+    <input type="submit" name="eliminar" value="Eliminar">
+</form>
 
