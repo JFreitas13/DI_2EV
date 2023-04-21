@@ -46,7 +46,7 @@ class categoria_model {
         }
     }
 
-    public function eliminar($id) {
+    public function eliminarCategoria($id) {
 
         try {
             $consulta = "DELETE FROM categoria WHERE id = :id";

@@ -17,7 +17,7 @@
             <td> <?php echo $categoria['id'] ?></td>
             <td> <?php echo $categoria['nombre'] ?></td>
             <td><a href="/model/categorias_model.php?id=' . $categoria['id'] .' ">Editar</a></td> <!-- TODO. NO ESTA HECHO -->
-            <td><a href="/view/delete_categoria.php">Eliminar</a></td> <!-- TODO: REVISAR PORQUE NO ELIMINA. SE QUEDA EN BLANCO Y NO SALTA MENSAJE DE ERROR -->
+            <td><a href="/index_borrar_categorias.php?id=<?php echo $categoria['id'] ?>">Eliminar</a></td> <!-- TODO: REVISAR PORQUE NO ELIMINA. SE QUEDA EN BLANCO Y NO SALTA MENSAJE DE ERROR -->
             <?php } ?>
         </tr>
 

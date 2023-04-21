@@ -4,14 +4,14 @@ require_once ('../model/categoria_model.php');
 class categoria_controller
 {
 
+
     //atributo donde almacenamos la instancia del usuario_model
     private $modelo_categoria;
 
     /**
      * @param $modelo_categoria
      */
-    public function __construct($modelo_categoria)
-    {
+    public function __construct($modelo_categoria) {
         $this->modelo_categoria = $modelo_categoria;
     }
 
@@ -34,14 +34,47 @@ class categoria_controller
     }
 
     //por algun motivo no funciona. EN PROCESO. SE ATASCA EN EL CONTROLLER TAL COMO PASA CON EL LOGIN
-    public function eliminar($id) {
-        if ($this->modelo_categoria->eliminar($id)) {
-            header("Location: ../index_listar_categorias.php");
-        } else {
-            // Mostrar un mensaje de error si la eliminación falla
-            echo 'Error al eliminar el usuario';
+    public function deleteCategoria($id)
+    {
+//        $resultado = $this->modelo_categoria->eliminarCategoria($id);
+//        if ($resultado) {
+//            header("Location: ../index_listar_categorias.php");
+//        } else {
+//            echo "Error al eliminar la categoria";
+//        }
+
+//        echo "error1";
+        if (isset($_GET['action']) && !empty($_GET['action'])) {
+            $accion = $_GET['action'];
+            // Verificar la acción solicitada
+            switch ($accion) {
+                case 'eliminar':
+                    // Verificar si se ha enviado un ID válido
+                    if (isset($_GET['id']) && !empty($_GET['id'])) {
+                        $id = $_GET['id'];
+                        // Llamar a la función eliminarUsuario del modelo para eliminar el usuario
+                        $resultado = $this->modelo_categoria->eliminar($id);
+                        if ($resultado) {
+                            // Redirigir a la lista de usuarios con un mensaje de éxito
+                            header("Location: ../index_listar_categorias.php");
+                            exit;
+                        } else {
+                            // Redirigir a la lista de usuarios con un mensaje de error
+                            echo "error";
+                            exit;
+                        }
+                    }
+            }
         }
     }
+
+//        if ($this->modelo_categoria->eliminar($id)) {
+//            header("Location: ../index_listar_categorias.php");
+//        } else {
+//            // Mostrar un mensaje de error si la eliminación falla
+//            echo 'Error al eliminar el usuario';
+//        }
+//    }
 //        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //$categoria = new categoria_model($this->modelo_categoria); //objeto con los datos del formulario

@@ -71,10 +71,11 @@
 //}
 ?>
 
+
+
 <h1>Delete product</h1>
 
-<p>Are you sure you want to delete product?</p>
-<p>¿Estás seguro de que quieres eliminar este usuario?</p>
+<p>¿Estás seguro de que quieres eliminar esta categoria?</p>
 <form action="/controller/usuario_controller.php?action=eliminar?id=" method="post">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <input type="submit" name="eliminar" value="Eliminar">
