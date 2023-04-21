@@ -62,6 +62,16 @@ class categoria_model {
         }
     }
 
+    public function update($id, $nombre) {
+        function update($id) {
+            $db = getConnection();
+            $result = $db->prepare('UPDATE categoria SET nombre=:nombre WHERE id=:id');
+            $result->bindParam(':id', $id);
+            $result->bindParam(':nombre', $nombre);
+            $result->execute();
+        }
+    }
+
 
 
 }

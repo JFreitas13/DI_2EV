@@ -33,6 +33,16 @@ class categoria_controller
 
     }
 
+    function updateCategoria($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->modelo_categoria->update($id, $_POST);
+            header("Location: home_view");
+            exit();
+        } else {
+            echo 'ERROOOOR';
+        }
+    }
+
     //por algun motivo no funciona. EN PROCESO. SE ATASCA EN EL CONTROLLER TAL COMO PASA CON EL LOGIN
     public function deleteCategoria($id)
     {

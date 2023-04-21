@@ -9,10 +9,10 @@ function getConnection() {
     return new PDO('mysql:host=localhost;dbname=aa2_jf', $user, $pwd);
 }
 
-function delete($id) {
+function update($id) {
     $db = getConnection();
-    $result = $db->prepare('DELETE FROM categoria WHERE id=:id');
-    $result->bindParam(':id', $_GET['id']);
+    $result = $db->prepare('UPDATE categoria SET nombre=:nombre WHERE id=:id');
+    $result->bindParam(':id', $_POST['id']);
+    $result->bindParam(':nombre', $_POST['nombre']);
     $result->execute();
-    //return $respuestas = $db->rowCount();
 }
