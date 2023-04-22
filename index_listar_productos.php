@@ -4,10 +4,10 @@
 define('CONTROLLERS_FOLDER', 'controller/');
 
 // si no se indica un controlador, este es el controlador que usará
-define('DEFAULT_CONTROLLER', 'categorias');
+define('DEFAULT_CONTROLLER', 'productos');
 
 // si no se indica una accion, esta accion sera la que usara
-define('DEFAULT_ACTION', "listar");
+define('DEFAULT_ACTION', "listarProducto");
 
 //Obtenemos el controlador
 //si el usuario no lo introduce, seleccionamos el de por defecto

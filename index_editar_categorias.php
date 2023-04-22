@@ -7,7 +7,7 @@ define('CONTROLLERS_FOLDER', 'controller/');
 define('DEFAULT_CONTROLLER', 'categorias');
 
 // si no se indica una accion, esta accion sera la que usara
-define('DEFAULT_ACTION', "listar");
+define('DEFAULT_ACTION', "updateCategoria");
 
 //Obtenemos el controlador
 //si el usuario no lo introduce, seleccionamos el de por defecto
