@@ -46,6 +46,17 @@ class categoria_model {
         }
     }
 
+    //Funcion para recuperar categoria por id
+    function getCategoria($id) {
+
+        $db = getConnection();
+        $query = ('SELECT * FROM categoria WHERE id = ?');
+        $stmt = $db->prepare($query);
+        $stmt->execute(array($id));
+        $categoria = $stmt->fetch();
+        return $categoria;
+    }
+
     public function eliminarCategoria($id) {
 
         try {

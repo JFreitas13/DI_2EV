@@ -9,6 +9,20 @@ function listar() {
     include ('view/listar_categorias_view.php'); //se lo pasamos a la vista especifica
 }
 
+function listarPorId() {
+    if (!isset ($_GET ['id']))
+        die("No se han encontrado productos");
+    $id = $_GET ['id'];
+    //Incluimos el modelo correspondiente
+    require 'models/categorias_model';
+    //Le pedimos al modelo el libro con id = $id
+    $categoria = getCategoria($id);
+    if ($categoria == null)
+        die('Identificador incorrecto');
+    //Pasamos a la vista toda la informacion que se desea representar
+    include ('views/libros_ver.php');
+}
+
 //Función para borrar categoria
 function deleteCategoria() {
     if(isset($_GET['id']) && is_numeric($_GET['id']))
@@ -22,13 +36,15 @@ function deleteCategoria() {
 
 function updateCategoria() {
 
-    if(isset($_GET['id']) && is_numeric($_GET['id']))
+    if(isset($_GET['id']) && is_numeric($_GET['id'])) {
         // obtener el valor de ID mediante el método GET
         $id = $_GET['id'];
-    include 'view/update_categoria_view.php';
-    //Incluimos el modelo correspondiente
+        $nombre = $_GET['nombre'];
+        include 'view/update_categoria_view.php';
+        die();
+    }
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['modificar'])) {
     //confirma que el "ID" recibido es un valor válida antes
     // de obtener los datos del formulario
         if (is_numeric($_POST['id'])) {
