@@ -45,7 +45,7 @@
     </tr>
         <p>
             <a href="view/home_view.php">Volver</a>
-        </p> <!-- nos lleva al formulario de añadir categoria -->
+        </p>
     <?php } ?>
 
 </table>

@@ -25,10 +25,10 @@ function login($email, $password) {
                 echo "Contraseña Valida";
             } elseif(password_verify($password, $passwordDb) && $adminDB == 'user') {
                     session_start();          //Iniciamos la sesión para luego recuperarla
-//                $_SESSION['id']=$usuario['id']; //añadimos el id
-//                $_SESSION['email']=$usuario['email']; //añadimos el username
+                    $_SESSION['id']=$usuario['id']; //añadimos el id
+                    $_SESSION['email']=$usuario['email']; //añadimos el username
                     $_SESSION['admin']=$usuario['admin']; //añadimos el rol
-                header('Location: ./view/home_view.php');
+                    header('Location: ./view/home_view.php');
             }else{
                 echo "La contraseña no es correcta";
 //            header('Location: index_registar.php');
@@ -37,15 +37,7 @@ function login($email, $password) {
             echo "Usuario no existe en la BBDD";
 //            header('Location: index_registar.php');
         }
-
     } catch (PDOException $e) {
         echo "ERROR: " . $e->getMessage();
     }
 }
-
-//    function cryptconmd5($password) {
-//        //Crea un salt
-//        $salt = md5($password . "%*4!#$;.k~’(_@");
-//        $password = md5($salt . $password . $salt);
-//        return $password;
-//    }

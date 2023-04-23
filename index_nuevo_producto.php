@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 //La carpeta donde buscaremos los controladores
 define('CONTROLLERS_FOLDER', 'controller/');

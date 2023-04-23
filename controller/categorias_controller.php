@@ -1,26 +1,14 @@
 <?php
 
-//SE USA PARA LISTAR CON EL SISTEMA DE INDEX
+//este controllet lista el sistema de index
+
+//Función listar todas las categorias
 function listar() {
     require 'model/categorias_model.php';
-    //Le pide al modelo todos los libros
-    $categorias = getCategorias(); //funcion creada dentro de libros_model.php
-    //Pasa a la vista toda la infromacion que se desea representar
+    //Le pide al modelo todas las categorias
+    $categorias = getCategorias(); //funcion creada dentro de categoria_model
+    //Pasa a la vista toda la informacion que se desea representar
     include ('view/listar_categorias_view.php'); //se lo pasamos a la vista especifica
-}
-
-function listarPorId() {
-    if (!isset ($_GET ['id']))
-        die("No se han encontrado productos");
-    $id = $_GET ['id'];
-    //Incluimos el modelo correspondiente
-    require 'models/categorias_model';
-    //Le pedimos al modelo el libro con id = $id
-    $categoria = getCategoria($id);
-    if ($categoria == null)
-        die('Identificador incorrecto');
-    //Pasamos a la vista toda la informacion que se desea representar
-    include ('views/libros_ver.php');
 }
 
 //Función para borrar categoria
@@ -34,6 +22,7 @@ function deleteCategoria() {
     include 'view/home_view.php';
 }
 
+//Función modificar categoria TODO: no está terminado
 function updateCategoria()
 {
     if (isset($_GET['id']) && is_numeric($_GET['id'])) {

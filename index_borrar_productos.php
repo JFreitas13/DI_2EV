@@ -1,19 +1,25 @@
 <?php
-session_start();
+// Initialize variables
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Recibimos la id de la categoria y validamos int
+//session_start();
 
+// Initialize variables
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Recibimos la id de la categoria y validamos int
+
+//pruebas de delete
 //La carpeta donde buscaremos los controladores
 define('CONTROLLERS_FOLDER', 'controller/');
 
 // si no se indica un controlador, este es el controlador que usará
-define('DEFAULT_CONTROLLER', 'productos');
+define('DEFAULT_CONTROLLER', 'categorias');
 
 // si no se indica una accion, esta accion sera la que usara
-define('DEFAULT_ACTION', "listarProducto");
+define('DEFAULT_ACTION', "deleteCategoria");
 
 //Obtenemos el controlador
 //si el usuario no lo introduce, seleccionamos el de por defecto
 $controller = DEFAULT_CONTROLLER;
-if ( !empty ($_GET['controller']))
+if (!empty ($_GET['controller']))
     $controller = $_GET['controller'];
 
 //Obtenemos la accion introducida
@@ -27,8 +33,8 @@ if (!empty ($_GET['action']))
 $controller = CONTROLLERS_FOLDER . $controller . '_controller.php';
 
 //si la variable ($controller) es un ficehro lo requerimos
-if ( is_file($controller))
-    require_once ($controller);
+if (is_file($controller))
+    require_once($controller);
 else
     die ('El controlador no existe - 404 not found');
 

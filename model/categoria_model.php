@@ -26,12 +26,11 @@ class categoria_model {
         }
     }
 
-//    public function verificarCategoria($nombre) {
-//        $consulta = "SELECT COUNT(*) FROM categoria WHERE nombre = ?";
-//        $stmt = $this->conexion->prepare($consulta);
-//        $stmt->bindParam(':nombre', $nombre);
-//        $stmt->execute();
-//        $count = $stmt->fetchColumn();
-//        return $count > 0;
-//    }
+    public function update($id) {
+
+        $result = $this->conexion->prepare('UPDATE categoria SET nombre=:nombre WHERE id=:id');
+        $result->bindParam(':id', $id);
+        $result->execute();
+    }
+
 }

@@ -1,22 +1,28 @@
 <?php
+session_start();
+//si el usuario no es admin redirecciono a la home.
+if($_SESSION['admin'] != 'admin') {
+    header('Location: home_view.php');
+}?>
+
+<?php
 include ("header.php");
 require_once('../db/connect_db.php');
 require_once ('../model/categoria_model.php');
 require_once ('../controller/categoria_controller.php');
 
 $conexion = new Conexion(); //instanciamos la BBDD
-$modelo_categoria = new categoria_model($conexion->conectar()); //instanciamos la clase usuario_modelo y le pasamos el parametro de la conexion
-$controlador_categoria = new categoria_controller($modelo_categoria); //instanciamos el controlador del usuario al que pasamos como parametros el modelo_usuario que acabamos de instanciar
+$modelo_categoria = new categoria_model($conexion->conectar()); //instanciamos la clase modelo y le pasamos el parametro de la conexion
+$controlador_categoria = new categoria_controller($modelo_categoria); //instanciamos el controlador al que pasamos como parametros el modelo que acabamos de instanciar
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la solicitud de POST
     //obtenemos los datos
     $nombre = $_POST["nombre"];
-    //llamamos al metodo registrar del usuario_controller y pasamos los datos obtenidos
+    //llamamos al metodo añadir del controler y pasamos los datos obtenidos
     $controlador_categoria->nuevaCategoria($nombre);
-    //header("Location: ../index_listar_categorias.php"); //redirecciono a la home porque me falla al redireccionar al index de listado. TODO : ver como hacerlo
 }
 ?>
-
+<!--formulario para añadir categoria-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

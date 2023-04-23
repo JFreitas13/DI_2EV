@@ -1,6 +1,5 @@
 <?php
 include ("view/header.php");
-
 ?>
 
 <!-- página principal -->

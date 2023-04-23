@@ -10,6 +10,5 @@ function loginUsuario() {
         require ('./model/usuario_login.php');
         //llamamos al metodo registrar del usuario_controller y pasamos los datos obtenidos
         $loginUsuario = login($email, $password);
-        //header("Location: /view/home_view.php"); //una vez se registra le redireccionamos a la home
     }
 }

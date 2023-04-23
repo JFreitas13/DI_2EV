@@ -1,3 +1,10 @@
+<?php
+session_start();
+//si el usuario no es admin redirecciono a la home.
+if($_SESSION['admin'] != 'admin') {
+    header('Location: home_view.php');
+}?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,12 +29,10 @@
             <td> <?php echo $producto['id_categoria'] ?></td>
         </tr>
     <?php } ?>
-
 </table>
 
-
-<p><!--<a href="view/nuevo_producto.php">Añadir producto</a>--> <!-- nos lleva al formulario de añadir producto -->
-    <a href="AA_2_JoanaFreitas/index_listar_categorias.php">Volver</a> <!--opcion de regresar al listado de categorias -->
-</p> <!-- nos lleva al formulario de añadir categoria -->
+<p>
+    <a href="AA_2_JoanaFreitas/index_listar_categorias.php">Volver</a> <!--opcion de regresar al listado-->
+</p>
 </body>
 </html>

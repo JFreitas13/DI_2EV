@@ -22,11 +22,9 @@
             <td> <?php echo $venta['id_usuario'] ?></td>
         </tr>
     <?php } ?>
-
 </table>
-
-<p><!--<a href="view/nuevo_producto.php">Añadir producto</a>--> <!-- nos lleva al formulario de añadir producto -->
-    <a href="AA_2_JoanaFreitas/index_listar_productos.php">Volver</a> <!--opcion de regresar al listado de categorias -->
-</p> <!-- nos lleva al formulario de añadir categoria -->
+<p>
+    <a href="AA_2_JoanaFreitas/index_listar_ventas.php">Volver</a> <!--opcion de regresar al listado -->
+</p>
 </body>
 </html>
