@@ -26,6 +26,6 @@
 </table>
 
 
-<p><a href="AA_2_JoanaFreitas/index_listar_productos.php">Volver</a></p> <!-- nos lleva al formulario de añadir categoria -->
+<p><a href="/index_listar_productos.php">Volver</a></p> <!-- nos lleva al formulario de añadir categoria -->
 </body>
 </html>

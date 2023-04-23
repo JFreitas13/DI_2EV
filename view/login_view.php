@@ -19,12 +19,14 @@ include ("header.php");
     <input type="submit" name="login" value="Iniciar sesión">
 </form>
 
+<p>¿Aún no estás registrado? <a href="view/registrar_view.php">Registrar</a>.</p>
+
 
 <?php
 /*require_once('../db/connect_db.php');
 require_once ('../model/usuario_model.php');
 require_once ('../controller/usuario_controller.php');
-require_once ('../model/sesion.php');
+require_once ('../model/cerrar_sesion.php');
 
 $conexion = new Conexion(); //instanciamos la BBDD
 $modelo_usuario = new usuario_model($conexion->conectar()); //instanciamos la clase usuario_modelo y le pasamos el parametro de la conexion
