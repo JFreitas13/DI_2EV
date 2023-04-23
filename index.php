@@ -1,9 +1,5 @@
 <?php
-
-//require_once ('../usuario_controller.php');
 include ("view/header.php");
-
-//iniciarSesion();
 
 ?>
 

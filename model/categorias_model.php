@@ -22,6 +22,22 @@ function getCategorias() {
 //        return $categorias;
     }
 
+function delete($id) {
+    $db = getConnection();
+    $result = $db->prepare('DELETE FROM categoria WHERE id=:id');
+    $result->bindParam(':id', $_GET['id']);
+    $result->execute();
+    //return $respuestas = $db->rowCount();
+}
+
+function update($id) {
+    $db = getConnection();
+    $result = $db->prepare('UPDATE categoria SET nombre=:nombre WHERE id=:id');
+    $result->bindParam(':id', $_POST['id']);
+    $result->bindParam(':nombre', $_POST['nombre']);
+    $result->execute();
+}
+
 
     //NO BORRO DE MOMENTO. PRUEBAS VARIAS DE DELETE
 //    function deleteCategoria($id) {

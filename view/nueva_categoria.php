@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la s
     $nombre = $_POST["nombre"];
     //llamamos al metodo registrar del usuario_controller y pasamos los datos obtenidos
     $controlador_categoria->nuevaCategoria($nombre);
-    header("Location: ../index_listar_categorias.php"); //redirecciono a la home porque me falla al redireccionar al index de listado. TODO : ver como hacerlo
+    //header("Location: ../index_listar_categorias.php"); //redirecciono a la home porque me falla al redireccionar al index de listado. TODO : ver como hacerlo
 }
 ?>
 

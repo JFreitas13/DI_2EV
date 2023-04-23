@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la s
     $email = $_POST["email"];
     $password = $_POST["password"];
     //llamamos al metodo registrar del usuario_controller y pasamos los datos obtenidos
-    $controlador_usuario->registrar($nombre, $email, $password);
-    header("Location: home_view.php"); //una vez se registra le redireccionamos a la home
+    $controlador_usuario->registrarUsuario($nombre, $email, $password);
+    header("Location: ../index_login_usuario.php"); //una vez se registra le redireccionamos a la home
 }
 ?>
 
@@ -33,13 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la s
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" required><br>
     <label for="email">Email:</label>
-    <input type="text" name="email" required><br>
+    <input type="email" name="email" required><br>
     <label for="password">Password:</label>
     <input type="password" name="password" required><br>
     <input type="submit" name="registro" value="Registrar">
 </form>
-
-<p>Si ya estás registrada efectura el <a href="login_view.php">login</a>.</p> <!-- nos lleva al formulario de añadir categoria -->
+<br>
+<p>Si ya estás registrado efectura el <a href="login_view.php">login</a>.</p> <!-- nos lleva al formulario de añadir categoria -->
 </body>
 </html>
 

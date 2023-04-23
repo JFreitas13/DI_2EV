@@ -1,45 +1,44 @@
 <?php
 
 //SE USA PARA LISTAR CON EL SISTEMA DE INDEX
-function listarProducto() {
-    require 'model/productos_model.php';
+function listarVentas() {
+    require 'model/ventas_model.php';
     //Le pide al modelo todos los libros
-    $productos = getProductos(); //funcion creada dentro de libros_model.php
+    $ventas = getVentas(); //funcion creada dentro de libros_model.php
     //Pasa a la vista toda la infromacion que se desea representar
-    include ('view/listar_productos_view.php'); //se lo pasamos a la vista especifica
+    include ('view/listar_ventas_view.php'); //se lo pasamos a la vista especifica
 }
 
-function listarProductoCategoria() {
-    if (!isset ($_GET ['id_categoria']))
-        die("No has especificado una categoria");
-    $id_categoria = $_GET ['id_categoria'];
+function listarVentasProductos() {
+    if (!isset ($_GET ['id_producto']))
+        die("No has especificado un produto");
+    $id_producto = $_GET ['id_producto'];
     //Incluimos el modelo correspondiente
-    require 'model/productos_model.php';
+    require 'model/ventas_model.php';
     //Le pedimos al modelo el libro con id = $id
-    $productos = getProductoCategoria($id_categoria);
-    if ($productos == null)
+    $ventas = getVentasProducto($id_producto);
+    if ($ventas == null)
         die('No existem productos para esta categoria.');
     //Pasamos a la vista toda la informacion que se desea representar
     include ('view/listar_productosCategoria_view.php');
 }
+//
+//function productoNuevo() {
+//    include ("view/header.php");
+//    require_once 'view/nuevo_producto.php';
+//    if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la solicitud de POST
+//        //obtenemos los datos
+//        $nombre = $_POST["nombre"];
+//        $precio = $_POST["precio"];
+//        $id_categoria = $_POST["id_categoria"];
+//
+//        //Incluimos el modelo correspondiente
+//        require 'model/productos_model.php';
+//        $producto = nuevoProdcuto($nombre, $precio, $id_categoria);
+//        header("Location: home_view.php");
+//        echo "añadido";
+//    }
 
-function productoNuevo() {
-    include ("view/header.php");
-    require_once 'view/nuevo_producto.php';
-    if ($_SERVER["REQUEST_METHOD"] == "POST") { //verificamos que se ha enviado la solicitud de POST
-        //obtenemos los datos
-        $nombre = $_POST["nombre"];
-        $precio = $_POST["precio"];
-        $id_categoria = $_POST["id_categoria"];
-
-        //Incluimos el modelo correspondiente
-        require 'model/productos_model.php';
-        $producto = nuevoProdcuto($nombre, $precio, $id_categoria);
-        header("Location: ../index_listar_productos.php");
-        echo "añadido";
-    }
-
-}
 
 ////Función para borrar categoria
 //function deleteProducto() {

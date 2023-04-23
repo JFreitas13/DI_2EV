@@ -7,6 +7,7 @@ class categoria_controller
 
     //atributo donde almacenamos la instancia del usuario_model
     private $modelo_categoria;
+    private $conexion;
 
     /**
      * @param $modelo_categoria
@@ -15,105 +16,36 @@ class categoria_controller
         $this->modelo_categoria = $modelo_categoria;
     }
 
+    // Crear la nueva categoria
+    public function nuevaCategoria($nombre) {
 
-    public function nuevaCategoria($nombre)
-    {
-        //validar que los datos no estén vacios
-        if ($nombre == '') {
-            $error = 'ERROR: Por favor, introduce todos los campos requeridos.!';
-        }
-        //EJEMPLO DE VALIDACION. todo: pasar de usuario a categoria
-//            // Comprobar si el correo electrónico ya existe en la base de datos
-//            if ($this->modelo_usuario->existeCorreoElectronico($email)) {
-//                throw new Exception("El correo electrónico ya existe en la base de datos.");
-//            }
-        // Crear la nueva categoria
-        $categoria = new categoria_model(null, $nombre); //objeto con los datos del formulario
-        $this->modelo_categoria->nuevaCategoria($nombre); //
-
-    }
-
-    function updateCategoria($id) {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->modelo_categoria->update($id, $_POST);
-            header("Location: home_view");
-            exit();
+        //compruebo si ya existe
+        if($this->verificarCategoria($nombre)) {
+            echo "La categoria ya existe.";
         } else {
-            echo 'ERROOOOR';
-        }
-    }
-
-    //por algun motivo no funciona. EN PROCESO. SE ATASCA EN EL CONTROLLER TAL COMO PASA CON EL LOGIN
-    public function deleteCategoria($id)
-    {
-//        $resultado = $this->modelo_categoria->eliminarCategoria($id);
-//        if ($resultado) {
-//            header("Location: ../index_listar_categorias.php");
-//        } else {
-//            echo "Error al eliminar la categoria";
-//        }
-
-//        echo "error1";
-        if (isset($_GET['action']) && !empty($_GET['action'])) {
-            $accion = $_GET['action'];
-            // Verificar la acción solicitada
-            switch ($accion) {
-                case 'eliminar':
-                    // Verificar si se ha enviado un ID válido
-                    if (isset($_GET['id']) && !empty($_GET['id'])) {
-                        $id = $_GET['id'];
-                        // Llamar a la función eliminarUsuario del modelo para eliminar el usuario
-                        $resultado = $this->modelo_categoria->eliminar($id);
-                        if ($resultado) {
-                            // Redirigir a la lista de usuarios con un mensaje de éxito
-                            header("Location: ../index_listar_categorias.php");
-                            exit;
-                        } else {
-                            // Redirigir a la lista de usuarios con un mensaje de error
-                            echo "error";
-                            exit;
-                        }
-                    }
+            $resultado = $this->modelo_categoria->nuevaCategoria($nombre);
+            if ($resultado) {
+                header("Location: ../index_listar_categorias.php");;
+            } else {
+                return "ERROR";
             }
         }
     }
 
-//        if ($this->modelo_categoria->eliminar($id)) {
-//            header("Location: ../index_listar_categorias.php");
-//        } else {
-//            // Mostrar un mensaje de error si la eliminación falla
-//            echo 'Error al eliminar el usuario';
-//        }
-//    }
-//        if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        //$categoria = new categoria_model($this->modelo_categoria); //objeto con los datos del formulario
-        // Verificar si se ha enviado un ID válido
-//        if (isset($_GET['id']) && !empty($_GET['id'])) {
-//            $id = $_GET['id'];
-//            // Llamar a la función eliminarUsuario del modelo para eliminar el usuario
-//            $resultado = $this>$this->modelo_categoria->eliminar($id);
-//            if ($resultado) {
-//                // Redirigir a la lista de usuarios con un mensaje de éxito
-//                header("Location: ../index_listar_categorias.php");
-//                exit;
-//            }
-//            }
-//            $this->modelo_categoria>eliminar($id);
-//            header("Location: ../index_listar_categorias.php");
-
-//        $id = $_REQUEST['id'];
-//        $this->modelo_categoria->eliminar($id);
-//        header("Location home_view.php");
-
-//        if ($_GET['action'] == 'deleteCategoria') {
-//            // Eliminar el registro por su ID
-//            $id = $_GET['id'];
-//            $resultado = $this->modelo_categoria->deleteCategoria($id);
-//            if ($resultado) {
-//                header('"Location: index_listar_categorias.php"');
-//            } else {
-//                echo 'Error al eliminar el registro';
-//            }
-//        }
+    //verificar si la categoria ya existe o no.
+    private function verificarCategoria($nombre)
+    {
+        require ("../db/db_connect.php");
+        $db = getConnection();
+        $consulta = "SELECT COUNT(*) FROM categoria WHERE nombre = (:nombre)";
+        $stmt = $db->prepare($consulta);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
     }
+
+
+
+
+}

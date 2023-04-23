@@ -25,36 +25,33 @@
 </head>
 <body>
 
+<p>Rellena el formulario para añadir un nuevo producto.</p>
+<?php
+$user = 'root';
+$pwd = '';
+$db = new PDO('mysql:host=localhost;dbname=aa2_jf', $user, $pwd);
+?>
 <form method="post">
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" required><br>
     <label for="nombre">Precio:</label>
     <input type="text" name="precio" required><br>
-    <label for="id_categoria">Categoria: </label>
-        <?php
-            $user = 'root';
-            $pwd = '';
-            $db = new PDO('mysql:host=localhost;dbname=aa2_jf', $user, $pwd);
-            ?>
-        <select>
-            <option value="">Elige una categoria</option>
-            <?php
-            //$conexion = new Conexion(); //instanciamos la BBDD
-            $stmt = $db->prepare('SELECT * FROM categoria');
-            $stmt->execute();
-            $categorias = $stmt->fectAll();
-            //$stmt->execute();
-    //        $categorias = array();
-    //        while ($categoria = $stmt->fetch()) {
-    //            $categorias[] = $categoria;
-    //            return $categorias;
-    //        }
+<!--    <label for="id_categoria">Categoria: </label>-->
+<!--    <input type="text" name="id_categoria" required><br>-->
+<!--    <label for="id_categoria">Categoria:</label>-->
 
-            foreach ($categorias as $categoria):
-                echo '<option value="'.$categoria['id'].'">'.$categoria['nombre'].'</option>';
-    endforeach;
-            ?>
-        </select>
+    <select name="id_categoria" class="form-control">
+        <option value="">Elige una categoria</option>
+        <?php
+        $consulta = $db->prepare("SELECT * FROM categoria");
+        $consulta->execute();
+        $categorias = $consulta->fetchAll();
+
+        foreach ($categorias as $categoria):
+        echo '<option value"'.$categoria["id"].'">'.$categoria["id"].' </option>';
+        endforeach;
+        ?>
+    </select>
     <input type="submit" name="registro" value="Añadir">
 </form>
 </body>

@@ -8,6 +8,17 @@ function getConnection() {
     return new PDO('mysql:host=localhost;dbname=aa2_jf', $user, $pwd);
 }
 
+function nuevoProdcuto($nombre, $precio, $id_categoria) {
+
+    $db = getConnection();
+    $query = ('INSERT INTO producto (nombre, precio, id_categoria) VALUES (:nombre, :precio, :id_categoria)');
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':precio', $precio);
+    $stmt->bindParam(':id_categoria', $id_categoria);
+    $stmt->execute();
+}
+
 //Recoje la conexión lanzar un select a la BBDD para devolver un array de libros
 function getProductos() {
 
@@ -21,6 +32,15 @@ function getProductos() {
 //        $categorias[] = $categoria;
 //        return $categorias;
     }
+
+function getProductoCategoria($id_categoria) {
+
+    $db = getConnection();
+    $query = ('SELECT * FROM producto WHERE id_categoria = ?');
+    $stmt = $db->prepare($query);
+    $stmt->execute(array($id_categoria));
+    return $productos = $stmt->fetchAll(PDO::FETCH_ASSOC); //fectAll crea un array
+}
 
 
     //NO BORRO DE MOMENTO. PRUEBAS VARIAS DE DELETE

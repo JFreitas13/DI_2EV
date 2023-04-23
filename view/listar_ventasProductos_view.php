@@ -14,20 +14,19 @@
         <th>Categoria</th>
     </tr>
     <?php
-    foreach ($productos as $producto) {  ?>
+    foreach ($ventas as $venta) {  ?>
         <tr>
-            <td> <?php echo $producto['id'] ?></td>
-            <td> <?php echo $producto['nombre'] ?></td>
-            <td> <?php echo $producto['precio'] ?></td>
-            <td> <?php echo $producto['id_categoria'] ?></td>
+            <td> <?php echo $venta['id'] ?></td>
+            <td> <?php echo $venta['fecha'] ?></td>
+            <td> <?php echo $venta['id_producto'] ?></td>
+            <td> <?php echo $venta['id_usuario'] ?></td>
         </tr>
     <?php } ?>
 
 </table>
 
-
 <p><!--<a href="view/nuevo_producto.php">Añadir producto</a>--> <!-- nos lleva al formulario de añadir producto -->
-    <a href="AA_2_JoanaFreitas/index_listar_categorias.php">Volver</a> <!--opcion de regresar al listado de categorias -->
+    <a href="AA_2_JoanaFreitas/index_listar_productos.php">Volver</a> <!--opcion de regresar al listado de categorias -->
 </p> <!-- nos lleva al formulario de añadir categoria -->
 </body>
 </html>
